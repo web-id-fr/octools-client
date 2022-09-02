@@ -8,6 +8,7 @@ use WebId\ToadClient\Services\AbstractApiService;
 class GithubService extends AbstractApiService
 {
     private const ENDPOINT_GET_REPOSITORIES = '/github/getrepositories';
+
     private const ENDPOINT_GET_EMPLOYEE_PR = '/github/{firstname}/pullRequests';
 
     public function user(string $user): self
