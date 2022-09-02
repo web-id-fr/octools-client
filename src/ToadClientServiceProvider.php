@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace WebId\ToadClient;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use WebId\ToadClient\Commands\ToadClientCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class ToadClientServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,10 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
+            ->name('toad-client')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_skeleton_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->hasMigration('create_toad-client_table')
+            ->hasCommand(ToadClientCommand::class);
     }
 }
