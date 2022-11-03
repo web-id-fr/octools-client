@@ -56,7 +56,6 @@ php artisan vendor:publish --tag="toad-client-views"
 
 ```php
 $toadClient = new WebId\ToadClient();
-echo $toadClient->echoPhrase('Hello, WebId!');
 ```
 
 ## Testing

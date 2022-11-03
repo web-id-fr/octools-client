@@ -18,8 +18,6 @@ class ToadClientServiceProvider extends PackageServiceProvider
         $package
             ->name('toad-client')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_toad-client_table')
             ->hasCommand(ToadClientCommand::class);
     }
 }
