@@ -18,9 +18,8 @@ class ToadClientCommand extends Command
 
     public function handle(): int
     {
-        dump(
-            $this->client->github->user('Clément')->test(),
-        );
+        $member = $this->client->getMemberByEmail('clement@web-id.fr');
+        $this->client->gryzzly->member($member)->getEmployeeDeclarations();
 
         return self::SUCCESS;
     }

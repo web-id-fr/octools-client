@@ -6,24 +6,31 @@ use Illuminate\Support\Facades\Http;
 
 abstract class AbstractApiService
 {
-    private function request(string $method, string $uri, array $body = [])
+    /**
+     * @param  string  $method
+     * @param  string  $uri
+     * @param  array  $body
+     * @return array
+     *
+     * @throws \Illuminate\Http\Client\RequestException
+     */
+    private function request(string $method, string $uri, array $body = []): array
     {
         $appBasePath = 'http://toad.test/api';
         $uri = ltrim($uri, '/');
 
-        $response = Http::send($method, "$appBasePath/$uri");
+        /** @var array $response */
+        $response = Http::send($method, "$appBasePath/$uri")->throw()->json();
 
-        $response->throw();
-
-        return $response->json();
+        return $response;
     }
 
-    protected function get(string $uri)
+    protected function get(string $uri): array
     {
         return $this->request('GET', $uri);
     }
 
-    protected function post(string $uri, array $body)
+    protected function post(string $uri, array $body): array
     {
         return $this->request('POST', $uri, $body);
     }
