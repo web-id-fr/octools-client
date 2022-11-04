@@ -33,12 +33,6 @@
         "phpstan/phpstan-phpunit": "^1.0",
         "phpunit/phpunit": "^9.5"
     },
-    "autoload": {
-        "psr-4": {
-            "WebId\\ToadClient\\": "src",
-            "WebId\\ToadClient\\Database\\Factories\\": "database/factories"
-        }
-    },
     "autoload-dev": {
         "psr-4": {
             "WebId\\ToadClient\\Tests\\": "tests"
