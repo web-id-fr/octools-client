@@ -2,24 +2,28 @@
 
 namespace WebId\ToadClient\Services\Github;
 
+use WebId\ToadClient\Helpers\Str;
+use WebId\ToadClient\Models\Github\Issue;
+use WebId\ToadClient\Models\Github\PullRequest;
+use WebId\ToadClient\Models\Github\Repository;
+use WebId\ToadClient\Models\Github\User;
 use WebId\ToadClient\Services\AbstractApiService;
 
 class GithubService extends AbstractApiService
 {
     private const ENDPOINT_GET_REPOSITORIES = '/github/company-repositories';
 
-    private const ENDPOINT_GET_ALL_PULL_REQUESTS = '/github/company-pull-requests';
-
     private const ENDPOINT_GET_EMPLOYEES = '/github/company-employees';
 
-    ////////////////
-    /// MEMBER OR REPOSITORY
-    ///////////////
+    private const ENDPOINT_SEARCH_REPOSITORIES = '/github/search-repositories/{query}';
 
-    public function member(array $member): GithubMember
-    {
-        return new GithubMember($member);
-    }
+    private const ENDPOINT_SEARCH_ISSUES = '/github/search-issues/{query}';
+
+    private const ENDPOINT_SEARCH_PR = '/github/search-pull-requests/{query}';
+
+    ////////////////
+    /// REPOSITORY
+    ///////////////
 
     public function repository(string $repository): GithubRepository
     {
@@ -32,16 +36,91 @@ class GithubService extends AbstractApiService
 
     public function getCompanyRepositories(): array
     {
-        return $this->get(self::ENDPOINT_GET_REPOSITORIES);
-    }
+        /* @var string $apiToken */
+        $apiToken = config('toad-client.application_token');
 
-    public function getCompanyPullRequests(): array
-    {
-        return $this->get(self::ENDPOINT_GET_ALL_PULL_REQUESTS);
+        $response = $this->get(
+            $apiToken,
+            self::ENDPOINT_GET_REPOSITORIES
+        );
+
+        $response['items'] = array_map(
+            fn (array $item) => Repository::fromArray($item),
+            $response['items']
+        );
+
+        return $response;
     }
 
     public function getCompanyEmployees(): array
     {
-        return $this->get(self::ENDPOINT_GET_EMPLOYEES);
+        /** @var string $apiToken */
+        $apiToken = config('toad-client.application_token');
+
+        $response = $this->get(
+            $apiToken,
+            self::ENDPOINT_GET_EMPLOYEES
+        );
+
+        $response['items'] = array_map(
+            fn (array $item) => User::fromArray($item),
+            $response['items']
+        );
+
+        return $response;
+    }
+
+    public function searchRepositories(string $query): array
+    {
+        /** @var string $apiToken */
+        $apiToken = config('toad-client.application_token');
+
+        $response = $this->get(
+            $apiToken,
+            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_REPOSITORIES, ['query' => $query])
+        );
+
+        $response['items'] = array_map(
+            fn (array $item) => Repository::fromArray($item),
+            $response['items']
+        );
+
+        return $response;
+    }
+
+    public function searchIssues(string $query): array
+    {
+        /** @var string $apiToken */
+        $apiToken = config('toad-client.application_token');
+
+        $response = $this->get(
+            $apiToken,
+            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_ISSUES, ['query' => $query])
+        );
+
+        $response['items'] = array_map(
+            fn (array $item) => Issue::fromArray($item),
+            $response['items']
+        );
+
+        return $response;
+    }
+
+    public function searchPullRequests(string $query): array
+    {
+        /** @var string $apiToken */
+        $apiToken = config('toad-client.application_token');
+
+        $response = $this->get(
+            $apiToken,
+            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_PR, ['query' => $query])
+        );
+
+        $response['items'] = array_map(
+            fn (array $item) => PullRequest::fromArray($item),
+            $response['items']
+        );
+
+        return $response;
     }
 }

@@ -2,6 +2,9 @@
 
 namespace WebId\ToadClient\Services\Slack;
 
+use WebId\ToadClient\Helpers\Str;
+use WebId\ToadClient\Models\Slack\Message;
+use WebId\ToadClient\Models\Slack\User;
 use WebId\ToadClient\Services\AbstractApiService;
 
 class SlackService extends AbstractApiService
@@ -10,22 +13,60 @@ class SlackService extends AbstractApiService
 
     private const ENDPOINT_SEND_MESSAGE_IN_CHANNEL = '/slack/send-message-to-channel';
 
+    private const ENDPOINT_SEARCH_MESSAGES = '/slack/search-messages/{query}';
+
     ////////////////
     /// ORGANIZATION
     ///////////////
 
     public function getCompanyEmployees(): array
     {
-        return $this->get(self::ENDPOINT_GET_EMPLOYEES);
+        /* @var string $apiToken */
+        $apiToken = config('toad-client.application_token');
+
+        $response = $this->get(
+            $apiToken,
+            self::ENDPOINT_GET_EMPLOYEES
+        );
+
+        $response['items'] = array_map(
+            fn (array $item) => User::fromArray($item),
+            $response['items']
+        );
+
+        return $response;
     }
 
     public function sendMessageToChannel(string $message, string $channel)
     {
-        return $this->post(self::ENDPOINT_SEND_MESSAGE_IN_CHANNEL,
+        /* @var string $apiToken */
+        $apiToken = config('toad-client.application_token');
+
+        return $this->post(
+            $apiToken,
+            self::ENDPOINT_SEND_MESSAGE_IN_CHANNEL,
             [
                 'channel' => $channel,
                 'message' => $message,
             ]
         );
+    }
+
+    public function searchMessages(string $query): array
+    {
+        /* @var string $apiToken */
+        $apiToken = config('toad-client.application_token');
+
+        $response = $this->get(
+            $apiToken,
+            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_MESSAGES, ['query' => $query])
+        );
+
+        $response['items'] = array_map(
+            fn (array $item) => Message::fromArray($item),
+            $response['items']
+        );
+
+        return $response;
     }
 }

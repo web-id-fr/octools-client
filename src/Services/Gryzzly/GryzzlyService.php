@@ -2,6 +2,9 @@
 
 namespace WebId\ToadClient\Services\Gryzzly;
 
+use WebId\ToadClient\Models\Gryzzly\Project;
+use WebId\ToadClient\Models\Gryzzly\User;
+use WebId\ToadClient\Models\Member\Member;
 use WebId\ToadClient\Services\AbstractApiService;
 
 class GryzzlyService extends AbstractApiService
@@ -14,7 +17,7 @@ class GryzzlyService extends AbstractApiService
     /// MEMBER OR PROJECT
     ///////////////
 
-    public function member(array $member): GryzzlyMember
+    public function member(Member $member): GryzzlyMember
     {
         return new GryzzlyMember($member);
     }
@@ -30,11 +33,37 @@ class GryzzlyService extends AbstractApiService
 
     public function getCompanyEmployees(): array
     {
-        return $this->get(self::ENDPOINT_GET_EMPLOYEES);
+        /* @var string $apiToken */
+        $apiToken = config('toad-client.application_token');
+
+        $response = $this->get(
+            $apiToken,
+            self::ENDPOINT_GET_EMPLOYEES
+        );
+
+        $response['items'] = array_map(
+            fn (array $item) => User::fromArray($item),
+            $response['items']
+        );
+
+        return $response;
     }
 
     public function getCompanyProjects(): array
     {
-        return $this->get(self::ENDPOINT_GET_PROJECTS);
+        /* @var string $apiToken */
+        $apiToken = config('toad-client.application_token');
+
+        $response = $this->get(
+            $apiToken,
+            self::ENDPOINT_GET_PROJECTS
+        );
+
+        $response['items'] = array_map(
+            fn (array $item) => Project::fromArray($item),
+            $response['items']
+        );
+
+        return $response;
     }
 }

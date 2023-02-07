@@ -5,9 +5,8 @@ namespace WebId\ToadClient\Models\Member;
 class MemberWorkspace
 {
     private function __construct(
-        readonly public ?int $id,
+        readonly public int $id,
         readonly public string $name,
-        readonly public string $token,
     ) {
     }
 
@@ -16,11 +15,10 @@ class MemberWorkspace
         return new self(
             $array['id'],
             $array['name'],
-            $array['token'],
         );
     }
 
-    public function getKey(): ?int
+    public function getKey(): int
     {
         return $this->id;
     }
@@ -28,10 +26,5 @@ class MemberWorkspace
     public function name(): string
     {
         return $this->name;
-    }
-
-    public function token(): string
-    {
-        return $this->token;
     }
 }

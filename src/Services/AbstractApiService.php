@@ -2,36 +2,29 @@
 
 namespace WebId\ToadClient\Services;
 
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 
 abstract class AbstractApiService
 {
-    /**
-     * @param  string  $method
-     * @param  string  $uri
-     * @param  array  $body
-     * @return array
-     *
-     * @throws \Illuminate\Http\Client\RequestException
-     */
-    private function request(string $method, string $uri, array $body = []): array
+    private function auth(string $apiToken): PendingRequest
     {
         $appBasePath = 'http://toad.test/api';
-        $uri = ltrim($uri, '/');
 
-        /** @var array $response */
-        $response = Http::send($method, "$appBasePath/$uri")->throw()->json();
-
-        return $response;
+        return Http::withToken($apiToken)
+            ->throw()
+            ->asJson()
+            ->acceptJson()
+            ->baseUrl($appBasePath);
     }
 
-    protected function get(string $uri): array
+    protected function get(string $apiToken, string $uri, array $body = []): array
     {
-        return $this->request('GET', $uri);
+        return $this->auth($apiToken)->get($uri, $body)->json();
     }
 
-    protected function post(string $uri, array $body): array
+    protected function post(string $apiToken, string $uri, array $body = []): array
     {
-        return $this->request('POST', $uri, $body);
+        return $this->auth($apiToken)->post($uri, $body)->json();
     }
 }
