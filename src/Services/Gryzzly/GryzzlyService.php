@@ -31,14 +31,15 @@ class GryzzlyService extends AbstractApiService
     /// ORGANIZATION
     ///////////////
 
-    public function getCompanyEmployees(): array
+    public function getCompanyEmployees(array $options = []): array
     {
         /* @var string $apiToken */
         $apiToken = config('toad-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            self::ENDPOINT_GET_EMPLOYEES
+            self::ENDPOINT_GET_EMPLOYEES,
+            $options
         );
 
         $response['items'] = array_map(
@@ -49,14 +50,15 @@ class GryzzlyService extends AbstractApiService
         return $response;
     }
 
-    public function getCompanyProjects(): array
+    public function getCompanyProjects(array $options = []): array
     {
         /* @var string $apiToken */
         $apiToken = config('toad-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            self::ENDPOINT_GET_PROJECTS
+            self::ENDPOINT_GET_PROJECTS,
+            $options
         );
 
         $response['items'] = array_map(

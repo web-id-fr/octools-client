@@ -19,14 +19,15 @@ class SlackService extends AbstractApiService
     /// ORGANIZATION
     ///////////////
 
-    public function getCompanyEmployees(): array
+    public function getCompanyEmployees(array $options = []): array
     {
         /* @var string $apiToken */
         $apiToken = config('toad-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            self::ENDPOINT_GET_EMPLOYEES
+            self::ENDPOINT_GET_EMPLOYEES,
+            $options
         );
 
         $response['items'] = array_map(
@@ -52,14 +53,15 @@ class SlackService extends AbstractApiService
         );
     }
 
-    public function searchMessages(string $query): array
+    public function searchMessages(string $query, array $options = []): array
     {
         /* @var string $apiToken */
         $apiToken = config('toad-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_MESSAGES, ['query' => $query])
+            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_MESSAGES, ['query' => $query]),
+            $options
         );
 
         $response['items'] = array_map(

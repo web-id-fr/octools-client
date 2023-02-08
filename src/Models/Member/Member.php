@@ -24,7 +24,7 @@ class Member
             $array['email'],
             $array['birthdate'],
             MemberWorkspace::fromArray($array['workspace']),
-            array_map(fn (array $service) => MemberService::fromArray($service), $array['services']),
+            $array['services'],
         );
     }
 }

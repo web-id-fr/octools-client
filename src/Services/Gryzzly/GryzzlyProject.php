@@ -17,14 +17,15 @@ class GryzzlyProject extends AbstractApiService
     {
     }
 
-    public function getTasksOfProject(): array
+    public function getTasksOfProject(array $options = []): array
     {
         /** @var string $apiToken */
         $apiToken = config('toad-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_GET_TASKS_OF_PROJECT, ['project' => $this->project])
+            Str::buildStringWithParameters(self::ENDPOINT_GET_TASKS_OF_PROJECT, ['project' => $this->project]),
+            $options
         );
 
         $response['items'] = array_map(

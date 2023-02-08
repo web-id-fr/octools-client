@@ -34,7 +34,7 @@ class GithubService extends AbstractApiService
     /// ORGANIZATION
     ///////////////
 
-    public function getCompanyRepositories(): array
+    public function getCompanyRepositories(array $options = []): array
     {
         /* @var string $apiToken */
         $apiToken = config('toad-client.application_token');
@@ -52,14 +52,15 @@ class GithubService extends AbstractApiService
         return $response;
     }
 
-    public function getCompanyEmployees(): array
+    public function getCompanyEmployees(array $options = []): array
     {
         /** @var string $apiToken */
         $apiToken = config('toad-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            self::ENDPOINT_GET_EMPLOYEES
+            self::ENDPOINT_GET_EMPLOYEES,
+            $options
         );
 
         $response['items'] = array_map(
@@ -70,14 +71,15 @@ class GithubService extends AbstractApiService
         return $response;
     }
 
-    public function searchRepositories(string $query): array
+    public function searchRepositories(string $query, array $options = []): array
     {
         /** @var string $apiToken */
         $apiToken = config('toad-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_REPOSITORIES, ['query' => $query])
+            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_REPOSITORIES, ['query' => $query]),
+            $options
         );
 
         $response['items'] = array_map(
@@ -88,14 +90,15 @@ class GithubService extends AbstractApiService
         return $response;
     }
 
-    public function searchIssues(string $query): array
+    public function searchIssues(string $query, array $options = []): array
     {
         /** @var string $apiToken */
         $apiToken = config('toad-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_ISSUES, ['query' => $query])
+            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_ISSUES, ['query' => $query]),
+            $options
         );
 
         $response['items'] = array_map(
@@ -106,14 +109,15 @@ class GithubService extends AbstractApiService
         return $response;
     }
 
-    public function searchPullRequests(string $query): array
+    public function searchPullRequests(string $query, array $options = []): array
     {
         /** @var string $apiToken */
         $apiToken = config('toad-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_PR, ['query' => $query])
+            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_PR, ['query' => $query]),
+            $options
         );
 
         $response['items'] = array_map(

@@ -39,14 +39,15 @@ class GithubRepository extends AbstractApiService
         return Repository::fromArray($response);
     }
 
-    public function getIssues(): array
+    public function getIssues(array $options = []): array
     {
         /* @var string $apiToken */
         $apiToken = config('toad-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_GET_REPOSITORY_ISSUES, ['repositoryName' => $this->repository])
+            Str::buildStringWithParameters(self::ENDPOINT_GET_REPOSITORY_ISSUES, ['repositoryName' => $this->repository]),
+            $options
         );
 
         $response['items'] = array_map(
@@ -57,14 +58,15 @@ class GithubRepository extends AbstractApiService
         return $response;
     }
 
-    public function getPullRequests(): array
+    public function getPullRequests(array $options = []): array
     {
         /* @var string $apiToken */
         $apiToken = config('toad-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_GET_REPOSITORY_PR, ['repositoryName' => $this->repository])
+            Str::buildStringWithParameters(self::ENDPOINT_GET_REPOSITORY_PR, ['repositoryName' => $this->repository]),
+            $options
         );
 
         $response['items'] = array_map(
@@ -75,14 +77,15 @@ class GithubRepository extends AbstractApiService
         return $response;
     }
 
-    public function getPullRequestsByMember(Member $member): array
+    public function getPullRequestsByMember(Member $member, array $options = []): array
     {
         /* @var string $apiToken */
         $apiToken = config('toad-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_GET_REPOSITORY_PR_BY_MEMBER, ['repositoryName' => $this->repository, 'member' => $member->id])
+            Str::buildStringWithParameters(self::ENDPOINT_GET_REPOSITORY_PR_BY_MEMBER, ['repositoryName' => $this->repository, 'member' => $member->id]),
+            $options
         );
 
         $response['items'] = array_map(

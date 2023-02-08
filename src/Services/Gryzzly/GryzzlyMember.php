@@ -34,14 +34,15 @@ class GryzzlyMember extends AbstractApiService
         return User::fromArray($response);
     }
 
-    public function getDeclarations(): array
+    public function getDeclarations(array $options = []): array
     {
         /* @var string $apiToken */
         $apiToken = config('toad-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_GET_EMPLOYEE_DECLARATIONS, ['member' => $this->member->id])
+            Str::buildStringWithParameters(self::ENDPOINT_GET_EMPLOYEE_DECLARATIONS, ['member' => $this->member->id]),
+            $options
         );
 
         $response['items'] = array_map(
