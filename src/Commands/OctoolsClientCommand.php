@@ -11,7 +11,7 @@ class OctoolsClientCommand extends Command
 
     public $description = 'My command';
 
-    public function __construct(private readonly OctoolsClient $client)
+    public function __construct()
     {
         parent::__construct();
     }
