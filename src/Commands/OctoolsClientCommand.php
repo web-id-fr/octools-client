@@ -3,7 +3,6 @@
 namespace WebId\OctoolsClient\Commands;
 
 use Illuminate\Console\Command;
-use WebId\OctoolsClient\OctoolsClient;
 
 class OctoolsClientCommand extends Command
 {
