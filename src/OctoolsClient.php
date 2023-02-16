@@ -18,9 +18,9 @@ class OctoolsClient extends AbstractApiService
     private const ENDPOINT_GET_MEMBER_BY_EMAIL = '/members/{email}';
 
     public function __construct(
-        public readonly GithubService $github,
-        public readonly SlackService $slack,
-        public readonly GryzzlyService $gryzzly,
+        public readonly GithubService $github = new GithubService(),
+        public readonly SlackService $slack = new SlackService(),
+        public readonly GryzzlyService $gryzzly = new GryzzlyService(),
     ) {
     }
 

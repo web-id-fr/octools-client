@@ -41,7 +41,8 @@ class GithubService extends AbstractApiService
 
         $response = $this->get(
             $apiToken,
-            self::ENDPOINT_GET_REPOSITORIES
+            self::ENDPOINT_GET_REPOSITORIES,
+            $options
         );
 
         $response['items'] = array_map(
