@@ -10,9 +10,6 @@ class GryzzlyProject extends AbstractApiService
 {
     private const ENDPOINT_GET_TASKS_OF_PROJECT = '/gryzzly/{project}/tasks';
 
-    /**
-     * @param  string  $project
-     */
     public function __construct(private readonly string $project)
     {
     }

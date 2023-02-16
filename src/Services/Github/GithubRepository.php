@@ -19,9 +19,6 @@ class GithubRepository extends AbstractApiService
 
     private const ENDPOINT_GET_REPOSITORY_PR = '/github/pull-requests/{repositoryName}';
 
-    /**
-     * @param  string  $repository
-     */
     public function __construct(private readonly string $repository)
     {
     }

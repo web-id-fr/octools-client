@@ -14,9 +14,6 @@ class GryzzlyMember extends AbstractApiService
 
     private const ENDPOINT_GET_EMPLOYEE_DECLARATIONS = '/gryzzly/{member}/declarations';
 
-    /**
-     * @param  Member  $member
-     */
     public function __construct(private readonly Member $member)
     {
     }
