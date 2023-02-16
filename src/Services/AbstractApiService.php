@@ -9,7 +9,7 @@ abstract class AbstractApiService
 {
     private function auth(string $apiToken): PendingRequest
     {
-        $appBasePath = 'http://toad.test/api';
+        $appBasePath = 'https://toad.web-id.ninja/api';
 
         return Http::withToken($apiToken)
             ->throw()
