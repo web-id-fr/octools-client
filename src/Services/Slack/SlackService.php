@@ -1,11 +1,11 @@
 <?php
 
-namespace WebId\ToadClient\Services\Slack;
+namespace WebId\OctoolsClient\Services\Slack;
 
-use WebId\ToadClient\Helpers\Str;
-use WebId\ToadClient\Models\Slack\Message;
-use WebId\ToadClient\Models\Slack\User;
-use WebId\ToadClient\Services\AbstractApiService;
+use WebId\OctoolsClient\Helpers\Str;
+use WebId\OctoolsClient\Models\Slack\Message;
+use WebId\OctoolsClient\Models\Slack\User;
+use WebId\OctoolsClient\Services\AbstractApiService;
 
 class SlackService extends AbstractApiService
 {
@@ -22,7 +22,7 @@ class SlackService extends AbstractApiService
     public function getCompanyEmployees(array $options = []): array
     {
         /* @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
@@ -41,7 +41,7 @@ class SlackService extends AbstractApiService
     public function sendMessageToChannel(string $message, string $channel)
     {
         /* @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         return $this->post(
             $apiToken,
@@ -56,7 +56,7 @@ class SlackService extends AbstractApiService
     public function searchMessages(string $query, array $options = []): array
     {
         /* @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,

@@ -1,11 +1,11 @@
 <?php
 
-namespace WebId\ToadClient\Services\Gryzzly;
+namespace WebId\OctoolsClient\Services\Gryzzly;
 
-use WebId\ToadClient\Models\Gryzzly\Project;
-use WebId\ToadClient\Models\Gryzzly\User;
-use WebId\ToadClient\Models\Member\Member;
-use WebId\ToadClient\Services\AbstractApiService;
+use WebId\OctoolsClient\Models\Gryzzly\Project;
+use WebId\OctoolsClient\Models\Gryzzly\User;
+use WebId\OctoolsClient\Models\Member\Member;
+use WebId\OctoolsClient\Services\AbstractApiService;
 
 class GryzzlyService extends AbstractApiService
 {
@@ -34,7 +34,7 @@ class GryzzlyService extends AbstractApiService
     public function getCompanyEmployees(array $options = []): array
     {
         /* @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
@@ -53,7 +53,7 @@ class GryzzlyService extends AbstractApiService
     public function getCompanyProjects(array $options = []): array
     {
         /* @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,

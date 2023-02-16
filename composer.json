@@ -1,12 +1,12 @@
 {
-    "name": "web-id/toad-client",
-    "description": "This is my package toad-client",
+    "name": "web-id/octools-client",
+    "description": "Laravel Client to use Octools.io API",
     "keywords": [
         "web-id",
         "laravel",
-        "toad-client"
+        "octools-client"
     ],
-    "homepage": "https://github.com/web-id/toad-client",
+    "homepage": "https://github.com/web-id/octools-client",
     "license": "MIT",
     "authors": [
         {
@@ -35,12 +35,12 @@
     },
     "autoload": {
         "psr-4": {
-            "WebId\\ToadClient\\": "src"
+            "WebId\\OctoolsClient\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "WebId\\ToadClient\\Tests\\": "tests"
+            "WebId\\OctoolsClient\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -59,10 +59,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "WebId\\ToadClient\\ToadClientServiceProvider"
+                "WebId\\OctoolsClient\\OctoolsClientServiceProvider"
             ],
             "aliases": {
-                "ToadClient": "WebId\\ToadClient\\Facades\\ToadClient"
+                "OctoolsClient": "WebId\\OctoolsClient\\Facades\\OctoolsClient"
             }
         }
     },

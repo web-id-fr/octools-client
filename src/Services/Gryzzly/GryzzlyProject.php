@@ -1,10 +1,10 @@
 <?php
 
-namespace WebId\ToadClient\Services\Gryzzly;
+namespace WebId\OctoolsClient\Services\Gryzzly;
 
-use WebId\ToadClient\Helpers\Str;
-use WebId\ToadClient\Models\Gryzzly\Task;
-use WebId\ToadClient\Services\AbstractApiService;
+use WebId\OctoolsClient\Helpers\Str;
+use WebId\OctoolsClient\Models\Gryzzly\Task;
+use WebId\OctoolsClient\Services\AbstractApiService;
 
 class GryzzlyProject extends AbstractApiService
 {
@@ -20,7 +20,7 @@ class GryzzlyProject extends AbstractApiService
     public function getTasksOfProject(array $options = []): array
     {
         /** @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,

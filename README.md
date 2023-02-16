@@ -23,7 +23,7 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 You can install the package via composer:
 
 ```bash
-composer require web-id/toad-client
+composer require web-id/octools-client
 ```
 
 You can publish and run the migrations with:
@@ -55,7 +55,7 @@ php artisan vendor:publish --tag="toad-client-views"
 ## Usage
 
 ```php
-$toadClient = new WebId\ToadClient();
+$toadClient = new WebId\OctoolsClient();
 ```
 
 ## Testing

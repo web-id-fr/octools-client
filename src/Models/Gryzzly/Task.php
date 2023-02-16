@@ -1,6 +1,6 @@
 <?php
 
-namespace WebId\ToadClient\Models\Gryzzly;
+namespace WebId\OctoolsClient\Models\Gryzzly;
 
 class Task
 {

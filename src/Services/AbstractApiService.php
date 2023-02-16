@@ -1,6 +1,6 @@
 <?php
 
-namespace WebId\ToadClient\Services;
+namespace WebId\OctoolsClient\Services;
 
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;

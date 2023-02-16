@@ -1,12 +1,12 @@
 <?php
 
-namespace WebId\ToadClient\Services\Gryzzly;
+namespace WebId\OctoolsClient\Services\Gryzzly;
 
-use WebId\ToadClient\Helpers\Str;
-use WebId\ToadClient\Models\Gryzzly\Declaration;
-use WebId\ToadClient\Models\Gryzzly\User;
-use WebId\ToadClient\Models\Member\Member;
-use WebId\ToadClient\Services\AbstractApiService;
+use WebId\OctoolsClient\Helpers\Str;
+use WebId\OctoolsClient\Models\Gryzzly\Declaration;
+use WebId\OctoolsClient\Models\Gryzzly\User;
+use WebId\OctoolsClient\Models\Member\Member;
+use WebId\OctoolsClient\Services\AbstractApiService;
 
 class GryzzlyMember extends AbstractApiService
 {
@@ -24,7 +24,7 @@ class GryzzlyMember extends AbstractApiService
     public function getEmployee(): User
     {
         /* @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
@@ -37,7 +37,7 @@ class GryzzlyMember extends AbstractApiService
     public function getDeclarations(array $options = []): array
     {
         /* @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,

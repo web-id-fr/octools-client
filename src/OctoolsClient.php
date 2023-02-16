@@ -1,15 +1,15 @@
 <?php
 
-namespace WebId\ToadClient;
+namespace WebId\OctoolsClient;
 
-use WebId\ToadClient\Helpers\Str;
-use WebId\ToadClient\Models\Member\Member;
-use WebId\ToadClient\Services\AbstractApiService;
-use WebId\ToadClient\Services\Github\GithubService;
-use WebId\ToadClient\Services\Gryzzly\GryzzlyService;
-use WebId\ToadClient\Services\Slack\SlackService;
+use WebId\OctoolsClient\Helpers\Str;
+use WebId\OctoolsClient\Models\Member\Member;
+use WebId\OctoolsClient\Services\AbstractApiService;
+use WebId\OctoolsClient\Services\Github\GithubService;
+use WebId\OctoolsClient\Services\Gryzzly\GryzzlyService;
+use WebId\OctoolsClient\Services\Slack\SlackService;
 
-class ToadClient extends AbstractApiService
+class OctoolsClient extends AbstractApiService
 {
     private const ENDPOINT_GET_MEMBERS = '/members';
 
@@ -27,7 +27,7 @@ class ToadClient extends AbstractApiService
     public function getMembers(): array
     {
         /* @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         return $this->get(
             $apiToken,
@@ -38,7 +38,7 @@ class ToadClient extends AbstractApiService
     public function getMemberById(int $id): Member
     {
         /* @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
@@ -51,7 +51,7 @@ class ToadClient extends AbstractApiService
     public function getMemberByEmail(string $email): Member
     {
         /* @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,

@@ -1,13 +1,13 @@
 <?php
 
-namespace WebId\ToadClient\Services\Github;
+namespace WebId\OctoolsClient\Services\Github;
 
-use WebId\ToadClient\Helpers\Str;
-use WebId\ToadClient\Models\Github\Issue;
-use WebId\ToadClient\Models\Github\PullRequest;
-use WebId\ToadClient\Models\Github\Repository;
-use WebId\ToadClient\Models\Github\User;
-use WebId\ToadClient\Services\AbstractApiService;
+use WebId\OctoolsClient\Helpers\Str;
+use WebId\OctoolsClient\Models\Github\Issue;
+use WebId\OctoolsClient\Models\Github\PullRequest;
+use WebId\OctoolsClient\Models\Github\Repository;
+use WebId\OctoolsClient\Models\Github\User;
+use WebId\OctoolsClient\Services\AbstractApiService;
 
 class GithubService extends AbstractApiService
 {
@@ -37,7 +37,7 @@ class GithubService extends AbstractApiService
     public function getCompanyRepositories(array $options = []): array
     {
         /* @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
@@ -55,7 +55,7 @@ class GithubService extends AbstractApiService
     public function getCompanyEmployees(array $options = []): array
     {
         /** @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
@@ -74,7 +74,7 @@ class GithubService extends AbstractApiService
     public function searchRepositories(string $query, array $options = []): array
     {
         /** @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
@@ -93,7 +93,7 @@ class GithubService extends AbstractApiService
     public function searchIssues(string $query, array $options = []): array
     {
         /** @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
@@ -112,7 +112,7 @@ class GithubService extends AbstractApiService
     public function searchPullRequests(string $query, array $options = []): array
     {
         /** @var string $apiToken */
-        $apiToken = config('toad-client.application_token');
+        $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,

@@ -1,6 +1,6 @@
 <?php
 
-namespace WebId\ToadClient\Models\Github;
+namespace WebId\OctoolsClient\Models\Github;
 
 class User
 {

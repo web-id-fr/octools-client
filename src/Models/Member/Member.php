@@ -1,6 +1,6 @@
 <?php
 
-namespace WebId\ToadClient\Models\Member;
+namespace WebId\OctoolsClient\Models\Member;
 
 class Member
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace WebId\ToadClient\Helpers;
+namespace WebId\OctoolsClient\Helpers;
 
 class Str
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace WebId\ToadClient\Tests;
+namespace WebId\OctoolsClient\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use WebId\ToadClient\ToadClientServiceProvider;
+use WebId\OctoolsClient\OctoolsClientServiceProvider;
 
 class TestCase extends Orchestra
 {
     protected function getPackageProviders($app): array
     {
         return [
-            ToadClientServiceProvider::class,
+            OctoolsClientServiceProvider::class,
         ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace WebId\ToadClient\Models\Slack;
+namespace WebId\OctoolsClient\Models\Slack;
 
 class Message
 {
