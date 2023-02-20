@@ -2,7 +2,9 @@
 
 namespace WebId\OctoolsClient\Models\Github;
 
-class Issue
+use Illuminate\Contracts\Support\Arrayable;
+
+class Issue implements Arrayable
 {
     public function __construct(
         public readonly string $title,
@@ -22,5 +24,10 @@ class Issue
             $data['url'],
             $data['updatedAt']
         );
+    }
+
+    public function toArray(): array
+    {
+        return get_object_vars($this);
     }
 }

@@ -2,7 +2,9 @@
 
 namespace WebId\OctoolsClient\Models\Member;
 
-class MemberWorkspace
+use Illuminate\Contracts\Support\Arrayable;
+
+class MemberWorkspace implements Arrayable
 {
     private function __construct(
         readonly public int $id,
@@ -18,13 +20,8 @@ class MemberWorkspace
         );
     }
 
-    public function getKey(): int
+    public function toArray(): array
     {
-        return $this->id;
-    }
-
-    public function name(): string
-    {
-        return $this->name;
+        return get_object_vars($this);
     }
 }

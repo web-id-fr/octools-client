@@ -2,7 +2,9 @@
 
 namespace WebId\OctoolsClient\Models\Github;
 
-class Repository
+use Illuminate\Contracts\Support\Arrayable;
+
+class Repository implements Arrayable
 {
     public function __construct(
         public readonly string $name,
@@ -18,5 +20,10 @@ class Repository
             $item['url'],
             $item['updatedAt']
         );
+    }
+
+    public function toArray(): array
+    {
+        return get_object_vars($this);
     }
 }

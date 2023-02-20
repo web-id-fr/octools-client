@@ -2,7 +2,9 @@
 
 namespace WebId\OctoolsClient\Models\Gryzzly;
 
-class Declaration
+use Illuminate\Contracts\Support\Arrayable;
+
+class Declaration implements Arrayable
 {
     public function __construct(
         public readonly string $id,
@@ -24,5 +26,10 @@ class Declaration
             $data['taskId'],
             $data['userId'],
         );
+    }
+
+    public function toArray(): array
+    {
+        return get_object_vars($this);
     }
 }
