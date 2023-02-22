@@ -2,7 +2,9 @@
 
 namespace WebId\OctoolsClient\Models\Gryzzly;
 
-class Task
+use Illuminate\Contracts\Support\Arrayable;
+
+class Task implements Arrayable
 {
     public function __construct(
         public readonly string $id,
@@ -14,5 +16,10 @@ class Task
     public static function fromArray(array $data): self
     {
         return new self($data['id'], $data['name'], $data['projectId']);
+    }
+
+    public function toArray(): array
+    {
+        return get_object_vars($this);
     }
 }

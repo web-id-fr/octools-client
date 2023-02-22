@@ -18,7 +18,7 @@ class GryzzlyMember extends AbstractApiService
     {
     }
 
-    public function getEmployee(): User
+    public function getEmployee(): array
     {
         /* @var string $apiToken */
         $apiToken = config('octools-client.application_token');
@@ -28,7 +28,7 @@ class GryzzlyMember extends AbstractApiService
             Str::buildStringWithParameters(self::ENDPOINT_GET_EMPLOYEE, ['member' => $this->member->id])
         );
 
-        return User::fromArray($response);
+        return User::fromArray($response)->toArray();
     }
 
     public function getDeclarations(array $options = []): array

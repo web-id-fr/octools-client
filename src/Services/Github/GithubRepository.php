@@ -23,7 +23,7 @@ class GithubRepository extends AbstractApiService
     {
     }
 
-    public function getRepository(): Repository
+    public function getRepository(): array
     {
         /* @var string $apiToken */
         $apiToken = config('octools-client.application_token');
@@ -33,7 +33,7 @@ class GithubRepository extends AbstractApiService
             Str::buildStringWithParameters(self::ENDPOINT_GET_REPOSITORY, ['repositoryName' => $this->repository])
         );
 
-        return Repository::fromArray($response);
+        return Repository::fromArray($response)->toArray();
     }
 
     public function getIssues(array $options = []): array

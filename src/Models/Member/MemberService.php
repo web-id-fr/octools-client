@@ -2,7 +2,9 @@
 
 namespace WebId\OctoolsClient\Models\Member;
 
-class MemberService
+use Illuminate\Contracts\Support\Arrayable;
+
+class MemberService implements Arrayable
 {
     private function __construct(
         readonly public string $service,
@@ -16,5 +18,10 @@ class MemberService
             $array['service'],
             $array['config'],
         );
+    }
+
+    public function toArray(): array
+    {
+        return get_object_vars($this);
     }
 }

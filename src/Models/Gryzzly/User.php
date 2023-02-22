@@ -2,7 +2,9 @@
 
 namespace WebId\OctoolsClient\Models\Gryzzly;
 
-class User
+use Illuminate\Contracts\Support\Arrayable;
+
+class User implements Arrayable
 {
     public function __construct(
         public readonly string $uuid,
@@ -18,5 +20,10 @@ class User
             $data['name'],
             $data['email'],
         );
+    }
+
+    public function toArray(): array
+    {
+        return get_object_vars($this);
     }
 }

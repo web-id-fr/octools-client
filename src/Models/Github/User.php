@@ -2,7 +2,9 @@
 
 namespace WebId\OctoolsClient\Models\Github;
 
-class User
+use Illuminate\Contracts\Support\Arrayable;
+
+class User implements Arrayable
 {
     public function __construct(
         public readonly string $login,
@@ -14,5 +16,10 @@ class User
     public static function fromArray(array $item): self
     {
         return new self($item['login'], $item['name'] ?? null, $item['email'] ?? null);
+    }
+
+    public function toArray(): array
+    {
+        return get_object_vars($this);
     }
 }
