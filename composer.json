@@ -4,7 +4,7 @@
     "keywords": [
         "web-id",
         "laravel",
-        "client"
+        "octools"
     ],
     "homepage": "https://github.com/octools/client",
     "license": "MIT",
@@ -36,11 +36,6 @@
             "Octools\\Client\\": "src"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Octools\\Client\\Tests\\": "tests"
-        }
-    },
     "scripts": {
         "pint": "vendor/bin/pint"
     },
@@ -55,10 +50,7 @@
         "laravel": {
             "providers": [
                 "Octools\\Client\\OctoolsClientServiceProvider"
-            ],
-            "aliases": {
-                "OctoolsClient": "Octools\\Client\\Facades\\OctoolsClient"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",
