@@ -1,12 +1,11 @@
 <?php
 
-namespace WebId\OctoolsClient\Services\Gryzzly;
+namespace Octools\Client\Services\Gryzzly;
 
-use WebId\OctoolsClient\Helpers\Str;
-use WebId\OctoolsClient\Models\Gryzzly\Declaration;
-use WebId\OctoolsClient\Models\Gryzzly\User;
-use WebId\OctoolsClient\Models\Member\Member;
-use WebId\OctoolsClient\Services\AbstractApiService;
+use Octools\Client\Models\Gryzzly\Declaration;
+use Octools\Client\Models\Gryzzly\User;
+use Octools\Client\Models\Member\Member;
+use Octools\Client\Services\AbstractApiService;
 
 class GryzzlyMember extends AbstractApiService
 {
@@ -20,12 +19,12 @@ class GryzzlyMember extends AbstractApiService
 
     public function getEmployee(): array
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_GET_EMPLOYEE, ['member' => $this->member->id])
+            replaceStringParameters(self::ENDPOINT_GET_EMPLOYEE, ['member' => $this->member->id])
         );
 
         return User::fromArray($response)->toArray();
@@ -33,12 +32,12 @@ class GryzzlyMember extends AbstractApiService
 
     public function getDeclarations(array $options = []): array
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_GET_EMPLOYEE_DECLARATIONS, ['member' => $this->member->id]),
+            replaceStringParameters(self::ENDPOINT_GET_EMPLOYEE_DECLARATIONS, ['member' => $this->member->id]),
             $options
         );
 

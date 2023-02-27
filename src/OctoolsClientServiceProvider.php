@@ -1,18 +1,18 @@
 <?php
 
-namespace WebId\OctoolsClient;
+namespace Octools\Client;
 
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
-use WebId\OctoolsClient\Commands\OctoolsClientCommand;
+use Illuminate\Support\ServiceProvider;
 
-class OctoolsClientServiceProvider extends PackageServiceProvider
+class OctoolsClientServiceProvider extends ServiceProvider
 {
-    public function configurePackage(Package $package): void
+    public function boot(): void
     {
-        $package
-            ->name('octools-client')
-            ->hasConfigFile()
-            ->hasCommand(OctoolsClientCommand::class);
+
+    }
+
+    public function register(): void
+    {
+        $this->mergeConfigFrom(__DIR__.'/../config/octools-client.php', 'octools-client');
     }
 }

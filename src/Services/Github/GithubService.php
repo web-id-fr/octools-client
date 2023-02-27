@@ -1,13 +1,12 @@
 <?php
 
-namespace WebId\OctoolsClient\Services\Github;
+namespace Octools\Client\Services\Github;
 
-use WebId\OctoolsClient\Helpers\Str;
-use WebId\OctoolsClient\Models\Github\Issue;
-use WebId\OctoolsClient\Models\Github\PullRequest;
-use WebId\OctoolsClient\Models\Github\Repository;
-use WebId\OctoolsClient\Models\Github\User;
-use WebId\OctoolsClient\Services\AbstractApiService;
+use Octools\Client\Models\Github\Issue;
+use Octools\Client\Models\Github\PullRequest;
+use Octools\Client\Models\Github\Repository;
+use Octools\Client\Models\Github\User;
+use Octools\Client\Services\AbstractApiService;
 
 class GithubService extends AbstractApiService
 {
@@ -36,7 +35,7 @@ class GithubService extends AbstractApiService
 
     public function getCompanyRepositories(array $options = []): array
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
@@ -79,7 +78,7 @@ class GithubService extends AbstractApiService
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_REPOSITORIES, ['query' => $query]),
+            replaceStringParameters(self::ENDPOINT_SEARCH_REPOSITORIES, ['query' => $query]),
             $options
         );
 
@@ -98,7 +97,7 @@ class GithubService extends AbstractApiService
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_ISSUES, ['query' => $query]),
+            replaceStringParameters(self::ENDPOINT_SEARCH_ISSUES, ['query' => $query]),
             $options
         );
 
@@ -117,7 +116,7 @@ class GithubService extends AbstractApiService
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_PR, ['query' => $query]),
+            replaceStringParameters(self::ENDPOINT_SEARCH_PR, ['query' => $query]),
             $options
         );
 

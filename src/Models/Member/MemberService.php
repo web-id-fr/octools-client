@@ -1,6 +1,6 @@
 <?php
 
-namespace WebId\OctoolsClient\Models\Member;
+namespace Octools\Client\Models\Member;
 
 use Illuminate\Contracts\Support\Arrayable;
 

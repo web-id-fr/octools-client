@@ -1,6 +1,6 @@
 <?php
 
-namespace WebId\OctoolsClient\Services;
+namespace Octools\Client\Services;
 
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
@@ -9,7 +9,7 @@ abstract class AbstractApiService
 {
     private function auth(string $apiToken): PendingRequest
     {
-        $appBasePath = 'https://toad.web-id.ninja/api';
+        $appBasePath = 'https://octools.web-id.ninja/api';
 
         return Http::withToken($apiToken)
             ->throw()
@@ -20,11 +20,17 @@ abstract class AbstractApiService
 
     protected function get(string $apiToken, string $uri, array $body = []): array
     {
-        return $this->auth($apiToken)->get($uri, $body)->json();
+        /** @var array $response */
+        $response = $this->auth($apiToken)->get($uri, $body)->json();
+
+        return $response;
     }
 
     protected function post(string $apiToken, string $uri, array $body = []): array
     {
-        return $this->auth($apiToken)->post($uri, $body)->json();
+        /** @var array $response */
+        $response = $this->auth($apiToken)->post($uri, $body)->json();
+
+        return $response;
     }
 }

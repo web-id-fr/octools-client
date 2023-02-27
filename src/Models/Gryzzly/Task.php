@@ -1,6 +1,6 @@
 <?php
 
-namespace WebId\OctoolsClient\Models\Gryzzly;
+namespace Octools\Client\Models\Gryzzly;
 
 use Illuminate\Contracts\Support\Arrayable;
 
