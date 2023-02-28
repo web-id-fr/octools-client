@@ -1,6 +1,6 @@
 <?php
 
-namespace WebId\OctoolsClient\Models\Slack;
+namespace Octools\Client\Models\Slack;
 
 class User
 {

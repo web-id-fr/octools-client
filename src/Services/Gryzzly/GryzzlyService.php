@@ -1,11 +1,11 @@
 <?php
 
-namespace WebId\OctoolsClient\Services\Gryzzly;
+namespace Octools\Client\Services\Gryzzly;
 
-use WebId\OctoolsClient\Models\Gryzzly\Project;
-use WebId\OctoolsClient\Models\Gryzzly\User;
-use WebId\OctoolsClient\Models\Member\Member;
-use WebId\OctoolsClient\Services\AbstractApiService;
+use Octools\Client\Models\Gryzzly\Project;
+use Octools\Client\Models\Gryzzly\User;
+use Octools\Client\Models\Member\Member;
+use Octools\Client\Services\AbstractApiService;
 
 class GryzzlyService extends AbstractApiService
 {
@@ -33,7 +33,7 @@ class GryzzlyService extends AbstractApiService
 
     public function getCompanyEmployees(array $options = []): array
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
@@ -52,7 +52,7 @@ class GryzzlyService extends AbstractApiService
 
     public function getCompanyProjects(array $options = []): array
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         $response = $this->get(

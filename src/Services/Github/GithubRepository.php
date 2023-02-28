@@ -1,13 +1,12 @@
 <?php
 
-namespace WebId\OctoolsClient\Services\Github;
+namespace Octools\Client\Services\Github;
 
-use WebId\OctoolsClient\Helpers\Str;
-use WebId\OctoolsClient\Models\Github\Issue;
-use WebId\OctoolsClient\Models\Github\PullRequest;
-use WebId\OctoolsClient\Models\Github\Repository;
-use WebId\OctoolsClient\Models\Member\Member;
-use WebId\OctoolsClient\Services\AbstractApiService;
+use Octools\Client\Models\Github\Issue;
+use Octools\Client\Models\Github\PullRequest;
+use Octools\Client\Models\Github\Repository;
+use Octools\Client\Models\Member\Member;
+use Octools\Client\Services\AbstractApiService;
 
 class GithubRepository extends AbstractApiService
 {
@@ -25,12 +24,12 @@ class GithubRepository extends AbstractApiService
 
     public function getRepository(): array
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_GET_REPOSITORY, ['repositoryName' => $this->repository])
+            replaceStringParameters(self::ENDPOINT_GET_REPOSITORY, ['repositoryName' => $this->repository])
         );
 
         return Repository::fromArray($response)->toArray();
@@ -38,12 +37,12 @@ class GithubRepository extends AbstractApiService
 
     public function getIssues(array $options = []): array
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_GET_REPOSITORY_ISSUES, ['repositoryName' => $this->repository]),
+            replaceStringParameters(self::ENDPOINT_GET_REPOSITORY_ISSUES, ['repositoryName' => $this->repository]),
             $options
         );
 
@@ -57,12 +56,12 @@ class GithubRepository extends AbstractApiService
 
     public function getPullRequests(array $options = []): array
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_GET_REPOSITORY_PR, ['repositoryName' => $this->repository]),
+            replaceStringParameters(self::ENDPOINT_GET_REPOSITORY_PR, ['repositoryName' => $this->repository]),
             $options
         );
 
@@ -76,12 +75,12 @@ class GithubRepository extends AbstractApiService
 
     public function getPullRequestsByMember(Member $member, array $options = []): array
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_GET_REPOSITORY_PR_BY_MEMBER, ['repositoryName' => $this->repository, 'member' => $member->id]),
+            replaceStringParameters(self::ENDPOINT_GET_REPOSITORY_PR_BY_MEMBER, ['repositoryName' => $this->repository, 'member' => $member->id]),
             $options
         );
 

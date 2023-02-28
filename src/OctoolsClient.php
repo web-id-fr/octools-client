@@ -1,13 +1,12 @@
 <?php
 
-namespace WebId\OctoolsClient;
+namespace Octools\Client;
 
-use WebId\OctoolsClient\Helpers\Str;
-use WebId\OctoolsClient\Models\Member\Member;
-use WebId\OctoolsClient\Services\AbstractApiService;
-use WebId\OctoolsClient\Services\Github\GithubService;
-use WebId\OctoolsClient\Services\Gryzzly\GryzzlyService;
-use WebId\OctoolsClient\Services\Slack\SlackService;
+use Octools\Client\Models\Member\Member;
+use Octools\Client\Services\AbstractApiService;
+use Octools\Client\Services\Github\GithubService;
+use Octools\Client\Services\Gryzzly\GryzzlyService;
+use Octools\Client\Services\Slack\SlackService;
 
 class OctoolsClient extends AbstractApiService
 {
@@ -26,7 +25,7 @@ class OctoolsClient extends AbstractApiService
 
     public function getMembers(): array
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         return $this->get(
@@ -37,12 +36,12 @@ class OctoolsClient extends AbstractApiService
 
     public function getMemberById(int $id): Member
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_GET_MEMBER_BY_ID, ['member' => $id])
+            replaceStringParameters(self::ENDPOINT_GET_MEMBER_BY_ID, ['member' => $id])
         );
 
         return Member::fromArray($response);
@@ -50,12 +49,12 @@ class OctoolsClient extends AbstractApiService
 
     public function getMemberByEmail(string $email): Member
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_GET_MEMBER_BY_EMAIL, ['email' => $email])
+            replaceStringParameters(self::ENDPOINT_GET_MEMBER_BY_EMAIL, ['email' => $email])
         );
 
         return Member::fromArray($response);

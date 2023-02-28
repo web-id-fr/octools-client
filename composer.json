@@ -1,12 +1,12 @@
 {
-    "name": "web-id/octools-client",
+    "name": "octools/client",
     "description": "Laravel Client to use Octools.io API",
     "keywords": [
         "web-id",
         "laravel",
-        "octools-client"
+        "octools"
     ],
-    "homepage": "https://github.com/web-id/octools-client",
+    "homepage": "https://github.com/octools/client",
     "license": "MIT",
     "authors": [
         {
@@ -18,36 +18,26 @@
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.5",
-        "illuminate/contracts": "^9.0",
-        "spatie/laravel-package-tools": "^1.9.2"
+        "illuminate/contracts": "^9.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
         "nunomaduro/collision": "^6.0",
-        "nunomaduro/larastan": "^2.0.1",
+        "nunomaduro/larastan": "^2.4",
         "orchestra/testbench": "^7.0",
-        "pestphp/pest": "^1.21",
-        "pestphp/pest-plugin-laravel": "^1.1",
-        "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
-        "phpunit/phpunit": "^9.5"
+        "phpstan/phpstan-phpunit": "^1.0"
     },
     "autoload": {
+        "files": [
+            "src/Helpers/string.php"
+        ],
         "psr-4": {
-            "WebId\\OctoolsClient\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "WebId\\OctoolsClient\\Tests\\": "tests"
+            "Octools\\Client\\": "src"
         }
     },
     "scripts": {
-        "analyse": "vendor/bin/phpstan analyse",
-        "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint"
+        "pint": "vendor/bin/pint"
     },
     "config": {
         "sort-packages": true,
@@ -59,11 +49,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "WebId\\OctoolsClient\\OctoolsClientServiceProvider"
-            ],
-            "aliases": {
-                "OctoolsClient": "WebId\\OctoolsClient\\Facades\\OctoolsClient"
-            }
+                "Octools\\Client\\OctoolsClientServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",

@@ -1,10 +1,9 @@
 <?php
 
-namespace WebId\OctoolsClient\Services\Gryzzly;
+namespace Octools\Client\Services\Gryzzly;
 
-use WebId\OctoolsClient\Helpers\Str;
-use WebId\OctoolsClient\Models\Gryzzly\Task;
-use WebId\OctoolsClient\Services\AbstractApiService;
+use Octools\Client\Models\Gryzzly\Task;
+use Octools\Client\Services\AbstractApiService;
 
 class GryzzlyProject extends AbstractApiService
 {
@@ -21,7 +20,7 @@ class GryzzlyProject extends AbstractApiService
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_GET_TASKS_OF_PROJECT, ['project' => $this->project]),
+            replaceStringParameters(self::ENDPOINT_GET_TASKS_OF_PROJECT, ['project' => $this->project]),
             $options
         );
 

@@ -1,11 +1,10 @@
 <?php
 
-namespace WebId\OctoolsClient\Services\Slack;
+namespace Octools\Client\Services\Slack;
 
-use WebId\OctoolsClient\Helpers\Str;
-use WebId\OctoolsClient\Models\Slack\Message;
-use WebId\OctoolsClient\Models\Slack\User;
-use WebId\OctoolsClient\Services\AbstractApiService;
+use Octools\Client\Models\Slack\Message;
+use Octools\Client\Models\Slack\User;
+use Octools\Client\Services\AbstractApiService;
 
 class SlackService extends AbstractApiService
 {
@@ -21,7 +20,7 @@ class SlackService extends AbstractApiService
 
     public function getCompanyEmployees(array $options = []): array
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
@@ -38,9 +37,9 @@ class SlackService extends AbstractApiService
         return $response;
     }
 
-    public function sendMessageToChannel(string $message, string $channel)
+    public function sendMessageToChannel(string $message, string $channel): array
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         return $this->post(
@@ -55,12 +54,12 @@ class SlackService extends AbstractApiService
 
     public function searchMessages(string $query, array $options = []): array
     {
-        /* @var string $apiToken */
+        /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
 
         $response = $this->get(
             $apiToken,
-            Str::buildStringWithParameters(self::ENDPOINT_SEARCH_MESSAGES, ['query' => $query]),
+            replaceStringParameters(self::ENDPOINT_SEARCH_MESSAGES, ['query' => $query]),
             $options
         );
 

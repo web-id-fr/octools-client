@@ -1,6 +1,6 @@
 <?php
 
-namespace WebId\OctoolsClient\Models\Github;
+namespace Octools\Client\Models\Github;
 
 use Illuminate\Contracts\Support\Arrayable;
 
