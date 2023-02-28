@@ -8,6 +8,11 @@ class OctoolsClientServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../config/octools-client.php' => config_path('octools-client.php'),
+            ], 'config');
+        }
     }
 
     public function register(): void

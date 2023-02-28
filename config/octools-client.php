@@ -9,5 +9,5 @@ return [
     /**
      * Endpoint url, production by default. Change it only for development.
      */
-    'octools_api_url' => env('OCTOOLS_API_URL', 'https://app.octools.io/api')
+    'octools_api_url' => env('OCTOOLS_API_URL', 'https://app.octools.io/api'),
 ];

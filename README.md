@@ -11,7 +11,7 @@ composer require octools/client
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --provider="Octools\Client\OctoolsClientServiceProvider" 
+php artisan vendor:publish --provider="Octools\Client\OctoolsClientServiceProvider" --tag="config"
 ```
 
 This is the contents of the published config file:
