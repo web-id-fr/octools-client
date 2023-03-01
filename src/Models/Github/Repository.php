@@ -7,8 +7,12 @@ use Illuminate\Contracts\Support\Arrayable;
 class Repository implements Arrayable
 {
     public function __construct(
+        public readonly int $databaseId,
         public readonly string $name,
+        public readonly ?string $description,
         public readonly string $url,
+        public readonly bool $isFork,
+        public readonly string $sshUrl,
         public readonly string $updatedAt,
     ) {
     }
@@ -16,9 +20,13 @@ class Repository implements Arrayable
     public static function fromArray(array $item): self
     {
         return new self(
+            $item['databaseId'],
             $item['name'],
+            $item['description'],
             $item['url'],
-            $item['updatedAt']
+            $item['isFork'],
+            $item['sshUrl'],
+            $item['updatedAt'],
         );
     }
 
