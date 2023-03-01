@@ -10,12 +10,18 @@ class User implements Arrayable
         public readonly string $login,
         public readonly ?string $name,
         public readonly ?string $email,
+        public readonly ?string $avatarUrl,
     ) {
     }
 
     public static function fromArray(array $item): self
     {
-        return new self($item['login'], $item['name'] ?? null, $item['email'] ?? null);
+        return new self(
+            $item['login'],
+            $item['name'] ?? null,
+            $item['email'] ?? null,
+            $item['avatarUrl'] ?? null
+        );
     }
 
     public function toArray(): array
