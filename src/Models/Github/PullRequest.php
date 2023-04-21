@@ -20,11 +20,6 @@ class PullRequest implements Arrayable
 
     public static function fromArray(array $data): self
     {
-        $data['reviewers'] = array_map(
-            fn (array $reviewRequest) => $reviewRequest['requestedReviewer'],
-            $data['reviewRequests']['nodes'] ?? []
-        );
-
         return new self(
             $data['title'],
             $data['number'],
@@ -33,11 +28,11 @@ class PullRequest implements Arrayable
             $data['author'] ? User::fromArray($data['author']) : null,
             array_map(
                 fn (array $item) => Issue::fromArray($item),
-                $data['closingIssuesReferences']['nodes'] ?? []
+                $data['linkedIssues'] ?? []
             ),
             array_map(
                 fn (array $item) => User::fromArray($item),
-                $data['assignees']['nodes'] ?? []
+                $data['assignees'] ?? []
             ),
             array_map(
                 fn (array $item) => User::fromArray($item),
