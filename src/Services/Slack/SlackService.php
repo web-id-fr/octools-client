@@ -37,7 +37,7 @@ class SlackService extends AbstractApiService
         return $response;
     }
 
-    public function sendMessageToChannel(string $message, string $channel): array
+    public function sendMessageToChannel(string $message, string $channel, string $blocks = null, string $attachments = null): array
     {
         /** @var string $apiToken */
         $apiToken = config('octools-client.application_token');
@@ -48,6 +48,8 @@ class SlackService extends AbstractApiService
             [
                 'channel' => $channel,
                 'message' => $message,
+                'blocks' => $blocks,
+                'attachments' => $attachments,
             ]
         );
     }
