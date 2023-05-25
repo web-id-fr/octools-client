@@ -11,6 +11,7 @@ class User implements Arrayable
         public readonly ?string $name,
         public readonly ?string $email,
         public readonly ?string $avatarUrl,
+        public readonly ?int $idOctoMember,
     ) {
     }
 
@@ -20,7 +21,8 @@ class User implements Arrayable
             $item['login'],
             $item['name'] ?? null,
             $item['email'] ?? null,
-            $item['avatarUrl'] ?? null
+            $item['avatarUrl'] ?? null,
+            $item['idOctoMember'] ?? null
         );
     }
 

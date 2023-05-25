@@ -44,7 +44,7 @@ class OctoolsClient extends AbstractApiService
             replaceStringParameters(self::ENDPOINT_GET_MEMBER_BY_ID, ['member' => $id])
         );
 
-        return Member::fromArray($response);
+        return Member::fromArray($response['data']);
     }
 
     public function getMemberByEmail(string $email): Member
@@ -57,6 +57,6 @@ class OctoolsClient extends AbstractApiService
             replaceStringParameters(self::ENDPOINT_GET_MEMBER_BY_EMAIL, ['email' => $email])
         );
 
-        return Member::fromArray($response);
+        return Member::fromArray($response['data']);
     }
 }

@@ -11,6 +11,7 @@ class PullRequest implements Arrayable
         public readonly int $number,
         public readonly string $url,
         public readonly string $state,
+        public readonly string $updatedAt,
         public readonly ?User $author,
         public readonly array $linkedIssues,
         public readonly array $assignees,
@@ -20,24 +21,20 @@ class PullRequest implements Arrayable
 
     public static function fromArray(array $data): self
     {
-        $data['reviewers'] = array_map(
-            fn (array $reviewRequest) => $reviewRequest['requestedReviewer'],
-            $data['reviewRequests']['nodes'] ?? []
-        );
-
         return new self(
             $data['title'],
             $data['number'],
             $data['url'],
             $data['state'],
+            $data['updatedAt'],
             $data['author'] ? User::fromArray($data['author']) : null,
             array_map(
                 fn (array $item) => Issue::fromArray($item),
-                $data['closingIssuesReferences']['nodes'] ?? []
+                $data['linkedIssues'] ?? []
             ),
             array_map(
                 fn (array $item) => User::fromArray($item),
-                $data['assignees']['nodes'] ?? []
+                $data['assignees'] ?? []
             ),
             array_map(
                 fn (array $item) => User::fromArray($item),
